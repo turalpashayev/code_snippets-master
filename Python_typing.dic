@@ -1,0 +1,46 @@
+import typing
+
+
+def change_bandwidths(new_bandwidths: typing.Dict,
+                      user_id: int,
+                      user_name: str) -> bool:
+    print(new_bandwidths, user_id, user_name)
+    return False
+
+
+def my_change_bandwidths(new_bandwidths: dict,
+                         user_id: int,
+                         user_name: str) ->bool:
+    print(new_bandwidths, user_id, user_name)
+    return True
+
+
+def main():
+    my_id, my_name = 23, "Tiras"
+    simple_dict = {"Hello": "Moon"}
+    change_bandwidths(simple_dict, my_id, my_name)
+    new_dict = {"new": "energy source"}
+    my_change_bandwidths(new_dict, my_id, my_name)
+
+if __name__ == "__main__":
+    main()
+
+##Both of them work just fine, there doesn't appear to be a difference. 
+
+'''
+There is no real difference between using a plain typing.Dict and dict, no.
+
+However, typing.Dict is a Generic type * that lets you specify the type of the keys and values too, making it more flexible:
+'''
+def change_bandwidths(new_bandwidths: typing.Dict[str, str],
+                      user_id: int,
+                      user_name: str) -> bool:
+'''
+As such, it could well be that at some point in your project lifetime you want to define the dictionary argument a little more precisely, at which point expanding typing.Dict to typing.Dict[key_type, value_type] is a 'smaller' change than replacing dict.
+
+You can make this even more generic by using Mapping or MutableMapping types here; since your function doesn't need to alter the mapping, I'd stick with Mapping. A dict is one mapping, but you could create other objects that also satisfy the mapping interface, and your function might well still work with those:
+'''
+
+def change_bandwidths(new_bandwidths: typing.Mapping[str, str],
+                      user_id: int,
+                      user_name: str) -> bool:
