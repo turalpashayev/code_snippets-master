@@ -27,3 +27,4 @@ for num in range(100):
     email = first.lower() + last.lower() + '@bogusemail.com'
 
     print(f'{first} {last}\n{phone}\n{address}\n{email}\n')
+
