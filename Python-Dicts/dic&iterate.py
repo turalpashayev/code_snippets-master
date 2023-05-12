@@ -11,7 +11,7 @@ Mike 9012
 ''' 
 
 
-for i,j in enumareate(employees):
+for i,j in enumerate(employees):
     print(k,v)
 
 '''
@@ -20,3 +20,6 @@ Output:
 1 Steve
 2 Mike
 '''
+
+
+# q: how to run python file in vscode using hotkey?
